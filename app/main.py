@@ -22,7 +22,7 @@ def post_produto():
 def get_produtos():
     session = SessionLocal()
     produtos = session.query(Produto).all()
-    result = [produtos.to_dict() for produto in produtos]
+    result = [produto.to_dict() for produto in produtos]
     session.close()
     return jsonify(result)
 
@@ -78,9 +78,16 @@ def post_cliente():
     session.commit()
     session.refresh(cliente)
     session.close()
+
     return jsonify(cliente.to_dict()), 201
 
-
+@app.route("/clientes", methods=['GET'])
+def get_clientes():
+    session = SessionLocal()
+    clientes = session.query(Cliente).all()
+    result = [cliente.to_dict() for cliente in clientes]
+    session.close()
+    return jsonify(result)
 
 # Rotas
 @app.route("/")
