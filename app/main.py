@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from database import engine, SessionLocal, Base
-from models import Produto
+from models import Produto, Cliente
 
 app = Flask(__name__)
 
@@ -68,6 +68,18 @@ def excluir_produto(produto_id):
     session.commit()
     session.close()
     return jsonify({"Mensagem": "O produto foi deletado"})
+
+@app.route("/clientes", methods=['POST'])
+def post_cliente():
+    session = SessionLocal()
+    data = request.json
+    cliente = Cliente(nome=data['nome'], email=data['email'], cpf=data['cpf'], endereco=data['endereco'])
+    session.add(cliente)
+    session.commit()
+    session.refresh(cliente)
+    session.close()
+    return jsonify(cliente.to_dict()), 201
+
 
 
 # Rotas

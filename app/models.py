@@ -13,3 +13,15 @@ class Produto(Base):
 
     def to_dict(self):
         return {"id": self.id, "nome":self.nome, "valor":self.valor, "marca":self.marca, "descricao": self.descricao, "quantidade":self.quantidade}
+
+class Cliente(Base):
+    __tablename__ = "clientes"
+
+    id = Column(Integer, primary_key=True, index=True)
+    nome = Column(String, nullable=False)
+    email = Column(String, nullable=False, unique=True)
+    cpf = Column(String, nullable=False, unique=True)
+    endereco = Column(String, nullable=False)
+
+    def to_dict(self):
+        return {"id":self.id, "nome":self.nome, "email":self.email, "cpf":self.cpf, "endereco":self.endereco}
