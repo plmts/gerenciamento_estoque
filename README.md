@@ -60,6 +60,5 @@ Fique à vontade para realizar mais testes, explorando todas as formas de requis
 
 
 <h1>✒️ Autores</h1>
-Mencione todos aqueles que ajudaram a levantar o projeto desde o seu início
 
 Paulo Matos - @plmts
